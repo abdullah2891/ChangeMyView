@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IndexView from './app/component/index'; 
+import BasicApp from './cmv/router'; 
 
 
 
@@ -10,7 +10,8 @@ export default class App extends React.Component {
     
 
     return (
-          <IndexView />
-    );
+        <BasicApp />
+        );
+    
   }
 }

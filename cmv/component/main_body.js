@@ -25,10 +25,12 @@ export default class MainBody extends Component{
     }
     
     _on_click(item){
-        Alert.alert('You tapped the button!');
+        // Alert.alert('You tapped the button!');
     }
         
     render(){
+        
+        const {navigate} = this.props.navigation; 
 
         
         return(
@@ -41,7 +43,7 @@ export default class MainBody extends Component{
                             key={i}
                             title={item.data.title}
                             titleNumberOfLines = {3}
-                            onPress = {()=>this._on_click(item)}
+                            onPress = {()=>navigate('Comment', {comment_id : item.data.id }) }
                           />
                         ))
                       }
