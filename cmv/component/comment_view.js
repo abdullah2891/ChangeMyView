@@ -38,6 +38,10 @@ export default class Comment extends Component{
     
     render(){
         return(
+            <View>
+              
+                
+            
                  <ScrollView>
                      {
                         this.state.header instanceof Array && 
@@ -66,6 +70,8 @@ export default class Comment extends Component{
                     })
                   }
                 </ScrollView>
+                
+            </View>
             );
     }
 }

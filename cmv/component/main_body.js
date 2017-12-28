@@ -1,8 +1,8 @@
 import React , {Component} from 'react'; 
 
-import {Alert,Text, View, ScrollView} from 'react-native';
+import {Alert,Text, View, ScrollView,AsyncStorage} from 'react-native';
 
-import {List, ListItem} from 'react-native-elements';
+import {List, ListItem ,Button} from 'react-native-elements';
 
 export default class MainBody extends Component{
     
@@ -15,6 +15,13 @@ export default class MainBody extends Component{
     }
     
     componentDidMount(){
+        
+        AsyncStorage
+            .getItem('profile').then(response=>{
+                console.log(response);
+            });
+        
+        
         fetch('https://www.reddit.com/r/changemyview/.json')
             .then(response => response.json() )
             .then(response=>{
@@ -25,7 +32,7 @@ export default class MainBody extends Component{
     }
     
     _on_click(item){
-        // Alert.alert('You tapped the button!');
+        Alert.alert('You tapped the button!');
     }
         
     render(){
@@ -34,6 +41,14 @@ export default class MainBody extends Component{
 
         
         return(
+            <View>
+                
+             <Button
+                      large
+                      title='LOG IN TO REDDIT'
+                      onPress =  {()=>navigate('LoginPage') }
+                      />
+            
             
                 <ScrollView>
                     <List>
@@ -49,7 +64,9 @@ export default class MainBody extends Component{
                       }
                     </List>
                 </ScrollView>
-                
+            
+                 
+            </View>    
             
             );
     }
