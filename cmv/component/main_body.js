@@ -4,8 +4,12 @@ import {Alert,Text, View, ScrollView,AsyncStorage} from 'react-native';
 
 import {List, ListItem ,Button} from 'react-native-elements';
 
+
+
+
 export default class MainBody extends Component{
     
+ 
     constructor(props){
         super(...arguments); 
         
@@ -13,7 +17,16 @@ export default class MainBody extends Component{
             posts  : []
         }
     }
+ 
+
+     
+    static navigationOptions = ({ navigation }) => ({
+        title: 'Change My View',
+        headerRight : <Button title='BUTTON'  onPress = {()=>navigation.navigate('LoginPage' ) } />
+    });
+          
     
+
     componentDidMount(){
         
         AsyncStorage
