@@ -62,6 +62,8 @@ export default class MainBody extends Component{
                       name='ios-add-outline'
                       type='ionicon'
                       color = '#0077ff'
+                    onPress = {()=>navigate('WritePost') }
+
                     />
                 </View>
                 <ScrollView>
