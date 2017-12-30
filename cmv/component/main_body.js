@@ -1,8 +1,8 @@
 import React , {Component} from 'react'; 
 
-import {Alert,Text, View, ScrollView,AsyncStorage} from 'react-native';
+import {Alert,Text, View,StyleSheet,ScrollView,AsyncStorage} from 'react-native';
 
-import {List, ListItem ,Button} from 'react-native-elements';
+import {List, ListItem ,Button,Icon} from 'react-native-elements';
 
 
 
@@ -22,7 +22,7 @@ export default class MainBody extends Component{
      
     static navigationOptions = ({ navigation }) => ({
         title: 'Change My View',
-        headerRight : <Button title='BUTTON'  onPress = {()=>navigation.navigate('LoginPage' ) } />
+        headerRight :  <Button  icon={{name: 'user-circle-o', type: 'font-awesome'}}  title='Login To Reddit' onPress = { ()=>navigation.navigate('LoginPage') }/>
     });
           
     
@@ -55,14 +55,15 @@ export default class MainBody extends Component{
         
         return(
             <View>
-                
-             <Button
-                      large
-                      title='LOG IN TO REDDIT'
-                      onPress =  {()=>navigate('LoginPage') }
-                      />
             
-            
+                <View style={styles.edit_page}>
+                   <Icon
+                      reverse
+                      name='ios-add-outline'
+                      type='ionicon'
+                      color = '#0077ff'
+                    />
+                </View>
                 <ScrollView>
                     <List>
                       {
@@ -84,3 +85,13 @@ export default class MainBody extends Component{
             );
     }
 }
+
+
+const styles= StyleSheet.create({
+    edit_page :{
+        position :  'absolute', 
+        top : 500, 
+        left : 300,
+        zIndex : 1000
+    }
+})
