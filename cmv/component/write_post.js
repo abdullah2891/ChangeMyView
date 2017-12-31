@@ -1,6 +1,6 @@
 import React, {Component} from 'react'; 
 
-import {View, StyleSheet ,Alert,  Button, AsyncStorage ,TextInput} from 'react-native'; 
+import {View, StyleSheet ,Alert,  Button, AsyncStorage ,TextInput,Text} from 'react-native'; 
 
 export default class LoginForm  extends Component{
     
@@ -66,16 +66,17 @@ export default class LoginForm  extends Component{
             console.log("write post", this.state.access_token );
             return(
                     <View>
-                    
+                        <Text>Title</Text>
                         <TextInput
                             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                             value={this.state.title}
                             onChangeText = { (text)=>this.setState({title : text}) }
                           />
                         
+                        <Text>Text</Text>
                         <TextInput 
                              multiline = {true}
-                             numberOfLines = {10}
+                             numberOfLines = {20}
                              value={this.state.text}
                              onChangeText = { (text) => this.setState({text : text}) }
                         />

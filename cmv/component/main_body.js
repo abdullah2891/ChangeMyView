@@ -1,11 +1,11 @@
 import React , {Component} from 'react'; 
 
-import {Alert,Text, View,StyleSheet,ScrollView,AsyncStorage} from 'react-native';
+import {Alert,Text, View,StyleSheet,ScrollView,AsyncStorage, TouchableOpacity } from 'react-native';
 
 import {List, ListItem ,Button,Icon} from 'react-native-elements';
 
 
-
+import ActionButton from './action_button';
 
 export default class MainBody extends Component{
     
@@ -22,7 +22,7 @@ export default class MainBody extends Component{
      
     static navigationOptions = ({ navigation }) => ({
         title: 'Change My View',
-        headerRight :  <Button  icon={{name: 'user-circle-o', type: 'font-awesome'}}  title='Login To Reddit' onPress = { ()=>navigation.navigate('LoginPage') }/>
+        headerRight :  <Button style={{marginTop :5 }} icon={{name: 'user-circle-o', type: 'font-awesome'}}  title='Login To Reddit' onPress = { ()=>navigation.navigate('LoginPage') }/>
     });
           
     
@@ -51,7 +51,7 @@ export default class MainBody extends Component{
     render(){
         
         const {navigate} = this.props.navigation; 
-
+        const fontSize =  9;
         
         return(
             <View>
@@ -70,12 +70,26 @@ export default class MainBody extends Component{
                     <List>
                       {
                         this.state.posts.map((item, i) => (
-                          <ListItem
-                            key={i}
-                            title={item.data.title}
-                            titleNumberOfLines = {3}
+                        <TouchableOpacity 
                             onPress = {()=>navigate('Comment', {comment_id : item.data.id }) }
-                          />
+                            style = {styles.card_style}
+                        
+                        > 
+                            <Text
+                                
+                                key = {i}
+                                style = {{fontSize : 20 }}
+                            >
+                                    {item.data.title} -{item.data.author}
+                                
+                            </Text>
+                            
+                            <ActionButton/>
+                        
+                        
+                        </TouchableOpacity >
+                          
+                          
                         ))
                       }
                     </List>
@@ -93,7 +107,26 @@ const styles= StyleSheet.create({
     edit_page :{
         position :  'absolute', 
         top : 500, 
-        left : 300,
+        left : 300, 
         zIndex : 1000
-    }
+    }, 
+    card_style : {
+        borderLeftWidth: 7,
+        borderLeftColor : '#7a0315',
+
+        borderTopWidth : 1 ,
+        
+        
+        borderRadius : 10, 
+        
+        marginLeft  : 5, 
+        marginRight : 5, 
+
+        padding : 5
+        
+    },
+    
+
+    
+    
 })

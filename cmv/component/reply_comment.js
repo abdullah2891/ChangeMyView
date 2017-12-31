@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 
 import {View, StyleSheet,Text} from 'react-native';
 
-
+import ActionButton from './action_button';
 
 export default class ReplyComment extends Component{
 
@@ -25,9 +25,9 @@ export default class ReplyComment extends Component{
             				<View>
                                 {
                                     post.data.replies.data.children.map((reply, index)=>(
-                                        <View  style={styles.comment}>
-                                            <Text>{reply.data.body}</Text>
-                                            
+                                        <View  style={styles.card_style}>
+                                            <Text>{reply.data.body} - {reply.data.author}</Text>
+                                            <ActionButton />
                                             <ReplyComment
                                                 comment = {reply}
                                                 />
@@ -51,10 +51,20 @@ export default class ReplyComment extends Component{
 }
 
 const styles = StyleSheet.create({
-    comment : {
-        borderStyle : 'solid', 
-        borderLeftWidth  : 2,
-        borderColor : '#353131',
-        backgroundColor : '#ffffff'
+    card_style : {
+        borderLeftWidth: 7,
+        borderLeftColor : '#1852af',
+
+        borderTopWidth : 1 ,
+        
+        
+        borderRadius : 10, 
+        
+        marginLeft  : 5, 
+        marginRight : 5, 
+        marginTop : 3, 
+        
+        padding : 5
+        
     } 
 });

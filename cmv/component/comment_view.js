@@ -4,6 +4,8 @@ import {View ,ScrollView, StyleSheet, Text} from  'react-native';
 import {List, ListItem} from 'react-native-elements';
 
 import ReplyComment from './reply_comment';
+import ActionButton  from './action_button';
+
 
 export default class Comment extends Component{
     
@@ -46,7 +48,8 @@ export default class Comment extends Component{
                      {
                         this.state.header instanceof Array && 
                             <View style={card_style.card}> 
-                                <Text>{this.state.header[0].data.selftext}</Text>
+                                <Text>{this.state.header[0].data.selftext} -{this.state.header[0].data.author}</Text>
+                                <ActionButton />
                             </View>
                         
                     }
@@ -59,7 +62,9 @@ export default class Comment extends Component{
 						}
                         return(
                             <View style={card_style.card}>
-                                <Text>{item.data.body}</Text>
+                                <Text>{item.data.body} - {item.data.author}</Text> 
+                                <ActionButton />
+
                                 <ReplyComment  
                                     comment =  {item} 
                                 />
