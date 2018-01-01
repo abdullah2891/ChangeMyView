@@ -25,9 +25,10 @@ export default class ReplyComment extends Component{
             				<View>
                                 {
                                     post.data.replies.data.children.map((reply, index)=>(
+                                    
                                         <View  style={styles.card_style}>
                                             <Text>{reply.data.body} - {reply.data.author}</Text>
-                                            <ActionButton />
+                                            <ActionButton item = {reply} />
                                             <ReplyComment
                                                 comment = {reply}
                                                 />

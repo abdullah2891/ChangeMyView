@@ -13,12 +13,12 @@ export default class ActionButton extends Component{
             super(props); 
             
             this.state = {
-                access_token : ''
+                access_token : {},
             }
         }
         
         componentWillMount(){
-            AsyncStorage.get('accessToken')
+            AsyncStorage.getItem('accessToken')
                     .then(token=>{
                         this.setState({access_token : token})
                     })
@@ -27,6 +27,37 @@ export default class ActionButton extends Component{
                     })
         }
         
+        _cast_vote(direction){
+            
+            let formData =  new FormData(); 
+    
+        
+            formData.append('id', this.props.item.data.name); 
+            formData.append('dir', direction); 
+
+            
+            console.log(formData); 
+            
+            console.log(this.state.access_token);
+            
+            fetch('https://oauth.reddit.com/api/vote', {
+              method : 'POST', 
+              headers : {
+                            'Authorization' : `Bearer ${this.state.access_token}`
+                        },
+              body :  formData
+            }).then(data=>{
+                
+                if(!data.ok){
+                    console.log(data['_bodyText'] );
+                }
+                
+                console.log(data["_bodyInit"]);
+                
+            }).catch(err => {
+                console.log('downvote', err);
+            })
+        }
         
         render(){
             
@@ -37,14 +68,14 @@ export default class ActionButton extends Component{
                           name='thumbs-o-up'
                           type='font-awesome'
                           color='#f50'
-                          onPress={() => console.log('updoot')} />
+                          onPress={() => this._cast_vote(1) } />
                           
                            <Icon
                               raised
                               name='thumbs-o-down'
                               type='font-awesome'
                               color='#f50'
-                              onPress={() => console.log('down doot')} />
+                              onPress={() => this._cast_vote(-1) } />
                     
                     </View>
                 );

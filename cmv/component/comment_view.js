@@ -63,7 +63,7 @@ export default class Comment extends Component{
                         return(
                             <View style={card_style.card}>
                                 <Text>{item.data.body} - {item.data.author}</Text> 
-                                <ActionButton />
+                                <ActionButton item = {item} />
 
                                 <ReplyComment  
                                     comment =  {item} 

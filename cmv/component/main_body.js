@@ -1,6 +1,6 @@
 import React , {Component} from 'react'; 
 
-import {Alert,Text, View,StyleSheet,ScrollView,AsyncStorage, TouchableOpacity } from 'react-native';
+import {Alert,Text, View,StyleSheet,ScrollView,AsyncStorage, TouchableOpacity,Dimensions } from 'react-native';
 
 import {List, ListItem ,Button,Icon} from 'react-native-elements';
 
@@ -52,7 +52,7 @@ export default class MainBody extends Component{
         
         const {navigate} = this.props.navigation; 
         const fontSize =  9;
-        
+        console.log( Dimensions.get('window') );
         return(
             <View>
             
@@ -84,7 +84,7 @@ export default class MainBody extends Component{
                                 
                             </Text>
                             
-                            <ActionButton/>
+                            <ActionButton item={item}/>
                         
                         
                         </TouchableOpacity >
@@ -106,8 +106,8 @@ export default class MainBody extends Component{
 const styles= StyleSheet.create({
     edit_page :{
         position :  'absolute', 
-        top : 500, 
-        left : 300, 
+        top : Dimensions.get('window').height - 200, 
+        left : Dimensions.get('window').width - 80, 
         zIndex : 1000
     }, 
     card_style : {

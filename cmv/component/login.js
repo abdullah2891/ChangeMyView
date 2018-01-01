@@ -65,7 +65,7 @@ export default class LoginForm  extends Component{
     
     getProfile(){
         
-        fetch('https://oauth.reddit.com/api/v1/me.json' ,{
+        window.fetch('https://oauth.reddit.com/api/v1/me.json' ,{
             headers : {
                 'Authorization' : `Bearer ${this.state.accessToken}`
             }
@@ -89,9 +89,9 @@ export default class LoginForm  extends Component{
         const client_id = '0sQl1qjRw1VpXQ'; 
         const api_url = 'https://ssl.reddit.com/api/v1/authorize.compact'; 
         const redirect_uri = 'https://python-workspace-abdullah2891.c9users.io/login';
-        const request_url = `${api_url}?state=abbaforever&duration=permanent&response_type=code&scope=identity,edit,submit&client_id=${client_id}&redirect_uri=${redirect_uri}`;
+        const request_url = `${api_url}?state=abbaforever&duration=permanent&response_type=code&scope=identity,edit,vote,submit&client_id=${client_id}&redirect_uri=${redirect_uri}`;
         
-        
+        console.log(this.props.window);
         return (
             <View style={{flex :1 , width :  400 }}>
                     {this.state.loginView &&
