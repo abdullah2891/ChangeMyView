@@ -146,8 +146,8 @@ const styles= StyleSheet.create({
     
     loading_screen : {
         position : 'absolute',
-        top : Dimensions.get('window').height /2 , 
-        left : Dimensions.get('window').width /3, 
+        top : Dimensions.get('window').height /3 , 
+        left : Dimensions.get('window').width /3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          , 
         zIndex : 1000
     }
     
