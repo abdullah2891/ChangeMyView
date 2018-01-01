@@ -52,7 +52,7 @@ export default class LoginForm  extends Component{
             method : 'POST', 
             headers : {
                 'Content-Type' : 'application/x-www-form-urlencoded', 
-                'Authorization' : 'Basic MHNRbDFxalJ3MVZwWFE6dXVDOWtCaW82dDZ4VnV1MVdvNXd6d3czS1VV'
+                'Authorization' : `Basic ${reddit_secret.CLIENT_SECRET}`
             }, 
             
             body :  `code=${code}&redirect_uri=https://python-workspace-abdullah2891.c9users.io/login&grant_type=authorization_code`
@@ -89,11 +89,12 @@ export default class LoginForm  extends Component{
     
     
     render(){
-        const client_id = '0sQl1qjRw1VpXQ'; 
+        const client_id = reddit_secret.CLIENT_ID; 
         const api_url = 'https://ssl.reddit.com/api/v1/authorize.compact'; 
         const redirect_uri = 'https://python-workspace-abdullah2891.c9users.io/login';
         const request_url = `${api_url}?state=abbaforever&duration=permanent&response_type=code&scope=identity,edit,vote,submit&client_id=${client_id}&redirect_uri=${redirect_uri}`;
         console.log(reddit_secret);
+        
         console.log(this.props.window);
         return (
             <View style={{flex :1 , width :  400 }}>
