@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 
 import {View, StyleSheet , Text,WebView, AsyncStorage } from 'react-native'; 
 
+import reddit_secret from '../../config';
+
+
 export default class LoginForm  extends Component{
     
     constructor(props){
@@ -90,7 +93,7 @@ export default class LoginForm  extends Component{
         const api_url = 'https://ssl.reddit.com/api/v1/authorize.compact'; 
         const redirect_uri = 'https://python-workspace-abdullah2891.c9users.io/login';
         const request_url = `${api_url}?state=abbaforever&duration=permanent&response_type=code&scope=identity,edit,vote,submit&client_id=${client_id}&redirect_uri=${redirect_uri}`;
-        
+        console.log(reddit_secret);
         console.log(this.props.window);
         return (
             <View style={{flex :1 , width :  400 }}>

@@ -1,6 +1,6 @@
 import React , {Component} from 'react'; 
 
-import {Alert,Text, View,StyleSheet,ScrollView,AsyncStorage, TouchableOpacity,Dimensions } from 'react-native';
+import {Alert,Text, View,StyleSheet,ScrollView,AsyncStorage, TouchableOpacity,Dimensions,ActivityIndicator } from 'react-native';
 
 import {List, ListItem ,Button,Icon} from 'react-native-elements';
 
@@ -14,7 +14,8 @@ export default class MainBody extends Component{
         super(...arguments); 
         
         this.state = {
-            posts  : []
+            posts  : [], 
+            isLoading : true
         }
     }
  
@@ -34,6 +35,7 @@ export default class MainBody extends Component{
                 console.log(response);
             });
         
+        this.setState({isLoading : true}); 
         
         fetch('https://www.reddit.com/r/changemyview/.json')
             .then(response => response.json() )
@@ -41,7 +43,11 @@ export default class MainBody extends Component{
                 let posts = response.data.children; 
                 
                 this.setState({posts : posts});
-            })
+                this.setState({isLoading : false});
+
+                
+            });
+            
     }
     
     _on_click(item){
@@ -66,6 +72,18 @@ export default class MainBody extends Component{
 
                     />
                 </View>
+                
+                
+                {
+                    this.state.isLoading && 
+                    <View style={styles.loading_screen}>
+                        <ActivityIndicator size="large" color="#0000ff"  />
+                        <Text>Loading posts</Text>
+                    </View>    
+                }
+                
+                
+                
                 <ScrollView>
                     <List>
                       {
@@ -125,6 +143,13 @@ const styles= StyleSheet.create({
         padding : 5
         
     },
+    
+    loading_screen : {
+        position : 'absolute',
+        top : Dimensions.get('window').height /2 , 
+        left : Dimensions.get('window').width /3, 
+        zIndex : 1000
+    }
     
 
     
